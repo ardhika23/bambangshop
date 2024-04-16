@@ -58,12 +58,12 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [✔️] Commit: `Implement delete function in Subscriber repository.`
     -   [✔️] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
-    -   [ ] Commit: `Create Notification service struct skeleton.`
-    -   [ ] Commit: `Implement subscribe function in Notification service.`
-    -   [ ] Commit: `Implement subscribe function in Notification controller.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification service.`
-    -   [ ] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [✔️] Commit: `Create Notification service struct skeleton.`
+    -   [✔️] Commit: `Implement subscribe function in Notification service.`
+    -   [✔️] Commit: `Implement subscribe function in Notification controller.`
+    -   [✔️] Commit: `Implement unsubscribe function in Notification service.`
+    -   [✔️] Commit: `Implement unsubscribe function in Notification controller.`
+    -   [✔️] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -84,5 +84,12 @@ This is the place for you to write reflections:
 3. The Singleton pattern ensures that a class has only one instance and provides a global point of access to it. However, merely implementing a Singleton does not inherently solve the issue of thread safety in concurrent environments. While Rust’s type system and ownership rules help enforce safety, for concurrent access to shared data like the List of Subscribers, using a thread-safe data structure like DashMap is essential. DashMap provides the necessary concurrency mechanisms out-of-the-box, making it a superior choice over implementing a Singleton pattern, which would still require additional mechanisms to manage thread-safe access and data mutations efficiently. Therefore, continuing to use DashMap is recommended for maintaining the thread safety and performance of the application.
 
 #### Reflection Publisher-2
+1. In the MVC pattern, the Model component indeed encapsulates both data and behavior that manipulates the data. However, in more complex applications, it is advantageous to further separate concerns to achieve a cleaner, more maintainable, and scalable architecture. The "Repository" pattern is used to separate data access logic and business logic, allowing the data access mechanisms to change independently of the rest of the code. This helps in maintaining the code dealing with data sources, like databases or external services, isolated from the business logic layer. On the other hand, the "Service" layer is used to encapsulate the business logic of the application, acting as a bridge between the Controllers and Repositories. This separation enhances modularity, reduces complexity, and increases the reusability of the code, making it easier to manage as the application grows and evolves.
+
+2. If only the Model is used without distinct Service and Repository layers, each Model would need to handle its own data storage, retrieval, and business logic. This approach would significantly increase the complexity of the Model classes as they would be managing too many responsibilities. For instance, the Subscriber Model would need methods to subscribe, unsubscribe, handle notifications, and directly interact with the database for CRUD operations. This increases the risk of code duplication, as similar data-handling logic might be needed in different models. It also makes the system less flexible to changes, as modifications in the database layer or business rules might require extensive changes across multiple models, thus violating the Single Responsibility Principle and making the system harder to maintain and scale.
+
+3. Postman is a powerful tool for API development and testing, allowing developers to send requests to web servers and view responses. Using Postman, developers can easily test APIs by creating collections of requests, specifying various HTTP methods, headers, and body data. Features like environment variables enable developers to switch between different development or production environments quickly. The ability to automate tests and integrate with continuous integration tools can significantly enhance the efficiency of developing and testing APIs. For the group project, features like sharing collections and collaborative workspaces are particularly beneficial, enabling team members to work together seamlessly on API development. 
+
+![alt text](image.png)
 
 #### Reflection Publisher-3
