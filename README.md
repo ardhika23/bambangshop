@@ -50,13 +50,13 @@ You can install Postman via this website: https://www.postman.com/downloads/
 ## Mandatory Checklists (Publisher)
 -   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [✔️] Commit: `Create Subscriber model struct.`
+    -   [✔️] Commit: `Create Notification model struct.`
+    -   [✔️] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [✔️] Commit: `Implement add function in Subscriber repository.`
+    -   [✔️] Commit: `Implement list_all function in Subscriber repository.`
+    -   [✔️] Commit: `Implement delete function in Subscriber repository.`
+    -   [✔️] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,6 +77,11 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. In the Observer pattern, the Subscriber interface (or trait in Rust) serves to define the standard methods that each concrete observer must implement to receive updates from the subject. This approach supports the decoupling of the subject's implementation from its observers, enabling more flexible and maintainable code by adhering to the open/closed principle. In the BambangShop case, implementing the Subscriber as a trait rather than just a struct allows the application to potentially handle different types of subscribers that may require different implementations for handling notifications. Thus, despite having a single Model struct, utilizing a trait for Subscriber is beneficial for maintaining the scalability and flexibility of the application's design.
+
+2. Using a Vec for storing unique identifiers such as 'id' and 'url' can be inefficient, particularly as the data grows, because checking for uniqueness would require iterating through the entire list, which is time-consuming and not scalable (O(n) complexity). In contrast, using a DashMap, a thread-safe, high-performance concurrent map, allows for much faster lookups, insertions, and deletions (close to O(1) complexity), which is crucial for maintaining performance as the number of subscribers grows. DashMap provides a more efficient and appropriate solution for handling unique values in a concurrent environment typical in web applications like BambangShop. 
+
+3. The Singleton pattern ensures that a class has only one instance and provides a global point of access to it. However, merely implementing a Singleton does not inherently solve the issue of thread safety in concurrent environments. While Rust’s type system and ownership rules help enforce safety, for concurrent access to shared data like the List of Subscribers, using a thread-safe data structure like DashMap is essential. DashMap provides the necessary concurrency mechanisms out-of-the-box, making it a superior choice over implementing a Singleton pattern, which would still require additional mechanisms to manage thread-safe access and data mutations efficiently. Therefore, continuing to use DashMap is recommended for maintaining the thread safety and performance of the application.
 
 #### Reflection Publisher-2
 
