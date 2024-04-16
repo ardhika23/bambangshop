@@ -40,5 +40,4 @@ impl SubscriberRepository {
         }
         return None;
     }
-
 }
