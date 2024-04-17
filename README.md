@@ -96,13 +96,10 @@ This is the place for you to write reflections:
 1. In this tutorial, we are implementing the Push model of the Observer pattern. This is evident from the fact that the update method in the Subscriber model is designed to send notifications to the Subscriber using an HTTP POST request actively. The notify function in the NotificationService prepares the notification payload and proactively sends (pushes) this information to each subscriber by calling the update method for each one. This approach contrasts with the Pull model, where the Subscriber would periodically check or 'pull' for updates from a central publisher or source.
 
 2. If we were to use the Pull model in this tutorial case, one advantage would be that subscribers could manage when and how often they check for updates, potentially reducing unnecessary traffic if there are no new updates to be pulled. This could also distribute network load more evenly over time instead of spikes during push notifications.
-
 However, the disadvantages might include increased complexity on the client-side, as each Subscriber would need to implement its own scheduling mechanism to check for updates. It may also result in delays in receiving updates since the pulling would happen at predetermined intervals, not in real-time. This model can also lead to increased resource utilization on the server side if many subscribers are frequently polling for updates, even when there are none.
 
 3. Not using multi-threading in the notification process would mean that the program would handle all notifications sequentially on a single thread. This could lead to several issues, especially as the number of subscribers grows. First, there could be a significant delay in the delivery of notifications to subscribers, as each notification must wait for the previous one to complete. In a high-load scenario, this could result in a backlog of notifications, leading to performance bottlenecks.
-
 Moreover, the entire notification process would be vulnerable to the failure of individual notifications. If sending a notification to one subscriber fails or takes a long time due to network issues, it could hold up the notifications for all subsequent subscribers. This could also negatively impact the responsiveness of the entire application, as the single thread handling notifications might be unable to process other tasks in a timely manner.
-
 Therefore, utilizing multi-threading allows the notification process to be more scalable and resilient. Notifications to subscribers can be processed in parallel, reducing the time taken to notify all subscribers and isolating issues so that a problem with one notification does not affect others.
 
 ![alt text](image-1.png)
